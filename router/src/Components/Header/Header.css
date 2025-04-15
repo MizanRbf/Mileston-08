@@ -1,0 +1,7 @@
+a{
+  margin-left: 4px;
+  color: silver;
+}
+nav .active{
+  text-decoration: underline;
+}
