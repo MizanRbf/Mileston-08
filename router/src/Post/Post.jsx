@@ -1,7 +1,10 @@
 import React from 'react';
-import { NavLink } from 'react-router';
+import { NavLink, useNavigate } from 'react-router';
 const Post = ({post}) => {
-  
+  const navigate = useNavigate();
+  const handleNavigate = ()=> {
+       navigate(`/posts/${id}`);
+  }
 
   const {title,body,id} = post;
   const postStyle = {
@@ -15,6 +18,7 @@ const Post = ({post}) => {
       <h3>{title}</h3>
       <p>{body}</p>
       <NavLink to={`/posts/${id}`}>Post Detail</NavLink>
+      <button onClick={handleNavigate}>Details of {id}</button>
     </div>
   );
 };
