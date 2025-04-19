@@ -2,8 +2,8 @@ import React from 'react';
 import { Star } from 'lucide-react';
 import { Link } from 'react-router';
 
-const Book = ({book}) => {
-  const {bookId, bookName, category,author, publisher, image, rating, review,tags} = book;
+const Book = ({singleBook}) => {
+  const {bookId, bookName, category,author, image, rating,tags} = singleBook;
   return (
     <div>
       <Link to={`bookDetails/${bookId}`}>

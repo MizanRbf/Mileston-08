@@ -1,5 +1,11 @@
 import React from 'react';
 import { useLoaderData, useParams } from 'react-router';
+import { addToStoredDB } from '../../Utilities/addToDB';
+import Swal from 'sweetalert2'
+import withReactContent from 'sweetalert2-react-content'
+
+const MySwal = withReactContent(Swal)
+
 
 const BookDetails = () => {
   const {id} = useParams();
@@ -7,7 +13,16 @@ const BookDetails = () => {
   const bookData = useLoaderData();
   const singleBook = bookData.find(book => book.bookId === Id);
   
-  const {bookId, bookName, category, author, image, publisher, rating, review, tags, totalPages, yearOfPublishing} = singleBook;
+  const {bookName, category, author, image, publisher, rating, review, tags, totalPages, yearOfPublishing} = singleBook;
+
+  const handleMarkAsRead = (bookId) => {
+    addToStoredDB(bookId);
+    MySwal.fire({
+      title: "Good job!",
+      text: "You clicked the button!",
+      icon: "success"
+    });
+  }
   
   return (
     <div className='flex gap-10 my-20'>
@@ -36,8 +51,8 @@ const BookDetails = () => {
         <p className='font-bold'><span className='inline-block w-52 font-normal'>Year of Publishing:</span> {yearOfPublishing}</p>
         <p className='font-bold'><span className='inline-block w-52 font-normal'>Rating:</span> {rating}</p>
         <div className=''>
-        <button className='border border-black py-2 px-6 rounded-lg mr-4 text-lg font-semibold'>Read</button>
-        <button className='bg-cyan-500 py-2 px-6 rounded-lg mr-4 text-lg font-semibold text-white'>Wishlist</button>
+        <button onClick={()=>handleMarkAsRead(id)} className='border border-black py-2 px-6 rounded-lg mr-4 text-lg font-semibold'>Mark as Read</button>
+        <button className='bg-cyan-500 py-2 px-6 rounded-lg mr-4 text-lg font-semibold text-white'>Add to Wishlist</button>
         </div>
       </div>
     </div>

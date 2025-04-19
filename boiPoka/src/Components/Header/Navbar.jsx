@@ -9,7 +9,7 @@ const Navbar = () => {
       <div className='text-md space-x-6 font-[400]'>
         <NavLink to="/">Home</NavLink>
         <NavLink to="./about">About</NavLink>
-        <NavLink>Listed Books</NavLink>
+        <NavLink to="readList">ReadList</NavLink>
         <NavLink>Pages to Read</NavLink>
       </div>
       <div>
